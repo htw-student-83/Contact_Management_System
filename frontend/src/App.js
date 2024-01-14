@@ -8,7 +8,7 @@ function App() {
     <div className="App">
         <BrowserRouter>
             <Maincomponent/>
-            <div className="flex flex-grow gap-96 bg-emerald-100">
+            <div className="flex flex-grow gap-40 bg-emerald-100">
                 <div className="font-mono ml-10 mt-5 text-2xl">
                     <Routes>
                         <Route
