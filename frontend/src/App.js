@@ -1,21 +1,21 @@
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Maincomponent from "./components/maincomponent";
-import Container from "./components/container";
-import Innercontainer from "./components/innercontainer";
-import Contactlist from "./components/contactlist";
-import ContactForm from "./components/contactForm";
+import Contactlist from "./components/contactlist"
 
 function App() {
   return (
     <div className="App">
-        <Maincomponent/>
-        <Container>
-            <Innercontainer>
-                <Contactlist/>
-            </Innercontainer>
-            <Innercontainer>
-                <ContactForm/>
-            </Innercontainer>
-        </Container>
+        <BrowserRouter>
+            <Maincomponent/>
+            <div className="font-mono ml-10 mt-5 text-2xl">
+                <Routes>
+                    <Route
+                        path="/"
+                        element={<Contactlist/>}
+                    />
+                </Routes>
+            </div>
+        </BrowserRouter>
     </div>
   );
 }

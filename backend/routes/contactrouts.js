@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     const contacts = await Contact.find({});
-    res.json(contacts);
+    res.status(200).json(contacts);
 })
 
 router.get('/:id', async (req, res) => {
@@ -14,7 +14,7 @@ router.get('/:id', async (req, res) => {
         return res.status(400).json({msg: "ID ist not valid."})
     }
     const contact = await Contact.findById(id);
-    res.json(contact);
+    res.status(200).json(contact);
 })
 
 router.post('/', async (req, res) => {
@@ -37,7 +37,7 @@ router.put('/:id', async (req, res) => {
         const changedContact = await Contact.findByIdAndUpdate(id,{
             ...req.body
         });
-        res.json({msg: "Contact changed"});
+        res.status(204).json({msg: "Contact changed"});
     }catch (error){
         return res.json({msg: "Couldn't change the contact " + error})
     }
@@ -50,7 +50,7 @@ router.delete('/:id', async (req, res) => {
     }
     try {
         const contactSaved = await Contact.findByIdAndDelete(id);
-        return res.json({msg: "Contact cancled."})
+        return res.status(204).json({msg: "Contact cancled."})
     }catch (error){
         return res.json({msg: "Couldn't delete the contact."})
     }
