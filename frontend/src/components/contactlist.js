@@ -18,8 +18,8 @@ export default function Contactlist(){
 
     return(
         <div>
-            <h2 className="mb-5">Contactlist</h2>
-            <div className="contacts">
+            <h2 className="ml-10 mb-5">Kontakte</h2>
+            <div className="ml-10">
                 {contacts && contacts.map((contact) => (
                     <Contactdetails key={contact._id} contact={contact}/>
                 ))}
