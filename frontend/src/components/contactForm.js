@@ -9,6 +9,11 @@ export default function ContactForm(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if(Firstname === "" || Lastname === ""  || Mobile === ""){
+            alert("Es dürfen keine Felder leer bleiben.")
+        }
+
         const contact = {Firstname, Lastname, Mobile};
 
         const response = await fetch('/api/contact', {
@@ -33,7 +38,7 @@ export default function ContactForm(){
     }
 
     return(
-        <div className="mt-10 ml-72 min-w-96">
+        <div className="mt-5 ml-72 min-w-96">
             <p className="font-bold text-2xl">Neuer Kontakt</p>
             <div className="">
                 <form onSubmit={handleSubmit} className="">
@@ -56,7 +61,7 @@ export default function ContactForm(){
                     <div className="mt-10">
                         <label className="mt-7">Mobile:</label>
                         <input
-                            type="text"
+                            type="number"
                             onChange={(event) => setMobile(event.target.value)}
                             value={Mobile}
                             className="ml-10 p-2 w-72 font-mono"/>
