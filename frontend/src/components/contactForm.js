@@ -1,6 +1,7 @@
 import {useState} from "react";
 
 export default function ContactForm(){
+    const MINLENGTH_OF_MOBILENUMBER = 11;
 
     const [Firstname, setFirstname] = useState("");
     const [Lastname, setLastname] = useState("");
@@ -12,25 +13,33 @@ export default function ContactForm(){
 
         const contact = {Firstname, Lastname, Mobile}
 
-        const response = await fetch('/api/contact', {
-            method: 'POST',
-            body: JSON.stringify(contact),
-            headers: {
-                'Content-Type': 'application/json'
+        if(!isValid(contact.Mobile)){
+            alert("Deine Handynummer ist ungültig.");
+        }else{
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                body: JSON.stringify(contact),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            const json = await response.json();
+
+            if(!response.ok){
+                setError(json.error);
             }
-        })
-        const json = await response.json();
 
-        if(!response.ok){
-            setError(json.error);
+            if(response.ok){
+                setFirstname("");
+                setLastname("");
+                setMobile("");
+                console.log("Neuer Kontakt hinzugefügt.", json);
+            }
         }
+    }
 
-        if(response.ok){
-            setFirstname("");
-            setLastname("");
-            setMobile("");
-            console.log("Neuer Kontakt hinzugefügt.", json);
-        }
+    function isValid(newNumber){
+        return newNumber < MINLENGTH_OF_MOBILENUMBER;
     }
 
     return(
@@ -45,6 +54,7 @@ export default function ContactForm(){
                             onChange={(e) => setFirstname(e.target.value)}
                             value={Firstname}
                             className="ml-5 p-2 w-72 font-mono"
+                            required={true}
                         />
                     </div>
                     <div className="mt-10">
@@ -54,6 +64,7 @@ export default function ContactForm(){
                             onChange={(e) => setLastname(e.target.value)}
                             value={Lastname}
                             className="ml-2 p-2 w-72 font-mono"
+                            required={true}
                         />
                     </div>
                     <div className="mt-10">
@@ -63,6 +74,7 @@ export default function ContactForm(){
                             onChange={(e) => setMobile(e.target.value)}
                             value={Mobile}
                             className="ml-10 p-2 w-72 font-mono"
+                            required={true}
                         />
                     </div>
                     <button className="bg-neutral-300 w-96 mt-10 p-2 hover:bg-lime-400 hover:rounded-3xl font-sans font-bold">Neuer Kontakt</button>
