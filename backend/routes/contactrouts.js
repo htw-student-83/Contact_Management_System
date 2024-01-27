@@ -2,7 +2,7 @@ const express = require('express');
 const Contact = require('../model/contact')
 const mongoose = require("mongoose");
 const router = express.Router();
-const controller = require('../controller/contactController')
+const controller = require('../controller/contactController');
 
 router.get('/', controller.getContacts);
 
