@@ -16,7 +16,10 @@ export default function ContactForm(){
 
         if(!isValid(contact.Mobile)){
             alert("Deine Handynummer ist ungültig.");
+        }else if(scriptPattern(contact.Firstname, contact.Lastname)) {
+            alert("Deine Eingabe ist ungültig.");
         }else{
+            console.log({contact})
             const response = await fetch('/api/contact', {
                 method: 'POST',
                 body: JSON.stringify(contact),
@@ -57,6 +60,18 @@ export default function ContactForm(){
             }
         }
         return patternIsValid;
+    }
+
+    //check for the input for a hack action
+    function scriptPattern(patternForFirstname, patternForLastname){
+        var fisrtLettersOfFirstname = patternForFirstname.substring(0,8);
+        var fisrtLettersOfLastname = patternForLastname.substring(0,8);
+        let patternIsInValid = false;
+        const scriptPattern = "<script>";
+        if(fisrtLettersOfFirstname === scriptPattern || fisrtLettersOfLastname === scriptPattern){
+            patternIsInValid = true;
+        }
+        return patternIsInValid;
     }
 
     return(
