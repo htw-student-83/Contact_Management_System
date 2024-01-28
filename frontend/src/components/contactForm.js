@@ -2,6 +2,7 @@ import {useState} from "react";
 
 export default function ContactForm(){
     const MINLENGTH_OF_MOBILENUMBER = 11;
+    const MOBILENETWORK = ["0152", "0162", "0172", "0173", "0174", "0153", "0179"];
 
     const [Firstname, setFirstname] = useState("");
     const [Lastname, setLastname] = useState("");
@@ -38,8 +39,24 @@ export default function ContactForm(){
         }
     }
 
+    //Vaidation of a new mobile number
     function isValid(newNumber){
-        return newNumber < MINLENGTH_OF_MOBILENUMBER;
+        var number_completly = newNumber >= MINLENGTH_OF_MOBILENUMBER;
+        var firstNumbers = newNumber.toString().substring(0, 4);
+        var validPattern = patternOfNumbersAreValid(firstNumbers);
+        return number_completly && validPattern;
+    }
+
+
+    //check the first 4 characters of a number
+    function patternOfNumbersAreValid(pattern){
+        let patternIsValid = false;
+        for(var i = 0; i < MOBILENETWORK.length; i++){
+            if(pattern === MOBILENETWORK[i]){
+                patternIsValid = true;
+            }
+        }
+        return patternIsValid;
     }
 
     return(
