@@ -2,7 +2,7 @@ import {useState} from "react";
 
 export default function ContactForm(){
     const MINLENGTH_OF_MOBILENUMBER = 11;
-    const MOBILENETWORK = ["0152", "0162", "0172", "0173", "0174", "0153", "0179"];
+    const MOBILENETWORK = ["0152", "0162", "0172", "0173", "0174", "0175", "0153", "0179"];
 
     const [Firstname, setFirstname] = useState("");
     const [Lastname, setLastname] = useState("");
@@ -75,7 +75,7 @@ export default function ContactForm(){
     }
 
     return(
-        <div className="mt-5 ml-72 min-w-96">
+        <div className="mt-5 ml-72 mb-9 min-w-80 bg-green-100 h-4/5 p-10 rounded-2xl">
             <p className="font-bold text-2xl">Neuer Kontakt</p>
             <div className="">
                 <form onSubmit={handleSubmit} className="">
@@ -109,7 +109,7 @@ export default function ContactForm(){
                             required={true}
                         />
                     </div>
-                    <button className="bg-neutral-300 w-96 mt-10 p-2 hover:bg-lime-400 hover:rounded-3xl font-sans font-bold">Neuer Kontakt</button>
+                    <button className="bg-gray-200 w-96 mt-10 p-2 hover:bg-lime-400 hover:rounded-3xl font-sans font-bold">Neuer Kontakt</button>
                     {Error && <div className="error">{Error}</div>}
                 </form>
             </div>
