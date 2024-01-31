@@ -83,16 +83,18 @@ export default function ContactForm(){
                         <label className="mt-2">Vorname:</label>
                         <input
                             type="text"
+                            id="vorname"
                             onChange={(e) => setFirstname(e.target.value)}
                             value={Firstname}
                             className="ml-5 p-2 w-72 font-mono"
                             required={true}
                         />
-                    </div>
+                </div>
                     <div className="mt-10">
                         <label className="mt-7">Nachname:</label>
                         <input
                             type="text"
+                            id="nachname"
                             onChange={(e) => setLastname(e.target.value)}
                             value={Lastname}
                             className="ml-2 p-2 w-72 font-mono"
@@ -103,6 +105,7 @@ export default function ContactForm(){
                         <label className="mt-7">Mobile:</label>
                         <input
                             type="number"
+                            id="mobile"
                             onChange={(e) => setMobile(e.target.value)}
                             value={Mobile}
                             className="ml-10 p-2 w-72 font-mono"
