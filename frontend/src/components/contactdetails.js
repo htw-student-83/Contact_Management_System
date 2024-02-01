@@ -36,7 +36,7 @@ export default function Contactdetails({contact}) {
 
     const handleUpdateClose =  async () => {
         console.log("function is open.")
-        if(getData()){
+        if(fieldsWithContent()){
             changedContact.Firstname = document.getElementById("vorname").value;
             changedContact.Lastname = document.getElementById("nachname").value;
             changedContact.Mobile = document.getElementById("mobile").value;
@@ -52,7 +52,7 @@ export default function Contactdetails({contact}) {
         setIsModalOpen(false);
     }
 
-    function getData(){
+    function fieldsWithContent(){
         var size1 = document.getElementById("vorname").value.length;
         var size2 = document.getElementById("nachname").value.length;
         var size3 = document.getElementById("mobile").value.length;
