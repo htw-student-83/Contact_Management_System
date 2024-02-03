@@ -59,7 +59,7 @@ export default function ContactForm(){
     }
 
     return(
-        <div className="mt-5 ml-72 mb-40 min-w-80 bg-green-100 h-4/5 p-10 rounded-2xl">
+        <div className="mt-5 ml-72 mb-4 min-w-80 bg-green-100 h-4/5 p-10 rounded-2xl">
             <p className="font-bold text-2xl">Neuer Kontakt</p>
             <div className="">
                 <form onSubmit={handleSubmit} className="">
