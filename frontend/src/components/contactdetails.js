@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
+import Mobilecheck from '../components/mobilecheck';
 
 export default function Contactdetails({contact}) {
 
@@ -40,14 +41,16 @@ export default function Contactdetails({contact}) {
             changedContact.Firstname = document.getElementById("vorname").value;
             changedContact.Lastname = document.getElementById("nachname").value;
             changedContact.Mobile = document.getElementById("mobile").value;
-            const response = await fetch('/api/contact/' + contact._id, {
-                method: "PUT",
-                body: JSON.stringify(changedContact),
-                headers:{
-                    "Content-Type": "Application/json"
-                }
-            })
-            const json = await response.json();
+            if(Mobilecheck.isValid(changedContact.Mobile)){
+                const response = await fetch('/api/contact/' + contact._id, {
+                    method: "PUT",
+                    body: JSON.stringify(changedContact),
+                    headers:{
+                        "Content-Type": "Application/json"
+                    }
+                })
+                const json = await response.json();
+            }
         }
         setIsModalOpen(false);
     }
@@ -78,20 +81,20 @@ export default function Contactdetails({contact}) {
                                id="vorname"
                                placeholder="vorname"
                                onChange={(e) => setFirstname(e.target.value)}
-                               value={contact.Firstname}/>
+                               value={Firstname}/>
 
                         <input className="mt-5 p-2 font-mono w-56"
                                type="text"
                                id="nachname"
                                placeholder="nachname"
                                onChange={(e) => setLastname(e.target.value)}
-                               value={contact.Lastname}/>
+                               value={Lastname}/>
                         <input className="mt-5 p-2 font-mono w-56"
                                type="number"
                                id="mobile"
                                placeholder="mobile"
                                onChange={(e) => setMobile(e.target.value)}
-                               value={contact.Mobile}/>
+                               value={Mobile}/>
                     </form>
                     <button className="bg-gray-200 w-56 p-2 mt-4 rounded-3xl hover:bg-amber-200 font-mono" onClick={handleUpdateClose}>Ändern</button>
                 </div>
