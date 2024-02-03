@@ -24,13 +24,17 @@ To connect to the MongoDB your machine needs the connecting to the internet and 
 ## To start the express server, run the following
 
 ```bash
-cd Contact_Management_System/backend
+cd backend
+```
+```bash
 npm start
 ```
 ## To start the client, run the following
 
 ```bash
-cd Contact_Management_System/frontend
+cd frontend
+```
+```bash
 npm start
 ```
 Open [http://localhost:3000](http://localhost:3000) and take a look on the website.
