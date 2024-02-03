@@ -6,9 +6,6 @@ const createContact = async (req, res) => {
     const {Firstname, Lastname, Mobile} = req.body;
     try {
         const contactSaved = await Contact.create({Firstname, Lastname, Mobile});
-        if(contactSaved){
-            console.log(contactSaved);
-        }
         res.json({msg: "New contact added."})
     }catch (error){
         res.status(400).json({msg: "New contact didn't added " + error});
