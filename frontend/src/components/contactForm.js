@@ -1,8 +1,7 @@
 import {useState} from "react";
+import Mobilecheck from '../components/mobilecheck';
 
 export default function ContactForm(){
-    const MINLENGTH_OF_MOBILENUMBER = 11;
-    const MOBILENETWORK = ["0152", "0162", "0172", "0173", "0174", "0175", "0153", "0179"];
 
     const [Firstname, setFirstname] = useState("");
     const [Lastname, setLastname] = useState("");
@@ -14,7 +13,7 @@ export default function ContactForm(){
 
         const contact = {Firstname, Lastname, Mobile}
 
-        if(!isValid(contact.Mobile)){
+        if(!Mobilecheck.isValid(contact.Mobile)){
             alert("Deine Handynummer ist ungültig.");
         }else if(scriptPattern(contact.Firstname, contact.Lastname)) {
             alert("Deine Eingabe ist ungültig.");
@@ -42,25 +41,7 @@ export default function ContactForm(){
         }
     }
 
-    //Vaidation of a new mobile number
-    function isValid(newNumber){
-        var number_completly = newNumber >= MINLENGTH_OF_MOBILENUMBER;
-        var firstNumbers = newNumber.toString().substring(0, 4);
-        var validPattern = patternOfNumbersAreValid(firstNumbers);
-        return number_completly && validPattern;
-    }
 
-
-    //check the first 4 characters of a number
-    function patternOfNumbersAreValid(pattern){
-        let patternIsValid = false;
-        for(var i = 0; i < MOBILENETWORK.length; i++){
-            if(pattern === MOBILENETWORK[i]){
-                patternIsValid = true;
-            }
-        }
-        return patternIsValid;
-    }
 
     //check for the input for a hack action
     function scriptPattern(patternForFirstname, patternForLastname){
