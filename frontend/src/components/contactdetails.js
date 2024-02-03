@@ -27,7 +27,7 @@ export default function Contactdetails({contact}) {
 
         if (response.ok) {
             setError(null);
-            console.log("Contact was deleted.");
+            alert("Contact was deleted successfully.")
         }
     }
 
@@ -36,7 +36,6 @@ export default function Contactdetails({contact}) {
     };
 
     const handleUpdateClose =  async () => {
-        console.log("function is open.")
         if(fieldsWithContent()){
             changedContact.Firstname = document.getElementById("vorname").value;
             changedContact.Lastname = document.getElementById("nachname").value;
@@ -50,11 +49,15 @@ export default function Contactdetails({contact}) {
                     }
                 })
                 const json = await response.json();
+                if(response.ok){
+                    alert("Contact was changed successfully.")
+                }
             }
         }
         setIsModalOpen(false);
     }
 
+    //check the content of input fields
     function fieldsWithContent(){
         var size1 = document.getElementById("vorname").value.length;
         var size2 = document.getElementById("nachname").value.length;

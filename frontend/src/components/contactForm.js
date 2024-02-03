@@ -6,6 +6,7 @@ export default function ContactForm(){
     const [Firstname, setFirstname] = useState("");
     const [Lastname, setLastname] = useState("");
     const [Mobile, setMobile] = useState("");
+    const [textIsVisible, setTestIsVisible] = useState(false);
     const [Error, setError] = useState(null);
 
     const handleSubmit = async (e) => {
@@ -18,7 +19,6 @@ export default function ContactForm(){
         }else if(scriptPattern(contact.Firstname, contact.Lastname)) {
             alert("Deine Eingabe ist ungültig.");
         }else{
-            console.log({contact})
             const response = await fetch('/api/contact', {
                 method: 'POST',
                 body: JSON.stringify(contact),
@@ -36,7 +36,10 @@ export default function ContactForm(){
                 setFirstname("");
                 setLastname("");
                 setMobile("");
-                console.log("Neuer Kontakt hinzugefügt.", json);
+                setTestIsVisible(true)
+                setTimeout(()=> {
+                    setTestIsVisible(false);
+                },3000)
             }
         }
     }
@@ -56,7 +59,7 @@ export default function ContactForm(){
     }
 
     return(
-        <div className="mt-5 ml-72 mb-9 min-w-80 bg-green-100 h-4/5 p-10 rounded-2xl">
+        <div className="mt-5 ml-72 mb-40 min-w-80 bg-green-100 h-4/5 p-10 rounded-2xl">
             <p className="font-bold text-2xl">Neuer Kontakt</p>
             <div className="">
                 <form onSubmit={handleSubmit} className="">
@@ -97,6 +100,9 @@ export default function ContactForm(){
                     {Error && <div className="error">{Error}</div>}
                 </form>
             </div>
+                <div className="mt-5 text-center">
+                    {textIsVisible?<p className="text-green-500 font-mono">Neuer Kontakt erfolgreich hinzugefügt</p>:''}
+                </div>
         </div>
     )
 }
