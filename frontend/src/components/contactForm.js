@@ -6,6 +6,7 @@ export default function ContactForm(){
     const [Firstname, setFirstname] = useState("");
     const [Lastname, setLastname] = useState("");
     const [Mobile, setMobile] = useState("");
+    const [textIsVisible, setTestIsVisible] = useState(false);
     const [Error, setError] = useState(null);
 
     const handleSubmit = async (e) => {
@@ -36,7 +37,10 @@ export default function ContactForm(){
                 setFirstname("");
                 setLastname("");
                 setMobile("");
-                console.log("Neuer Kontakt hinzugefügt.", json);
+                setTestIsVisible(true)
+                setTimeout(()=> {
+                    setTestIsVisible(false);
+                },3000)
             }
         }
     }
@@ -97,6 +101,9 @@ export default function ContactForm(){
                     {Error && <div className="error">{Error}</div>}
                 </form>
             </div>
+                <div className="mt-5 text-center">
+                    {textIsVisible?<p className="text-green-500 font-mono">Neuer Kontakt erfolgreich hinzugefügt</p>:''}
+                </div>
         </div>
     )
 }
