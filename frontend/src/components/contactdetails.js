@@ -93,7 +93,7 @@ export default function Contactdetails({contact}) {
                                onChange={(e) => setLastname(e.target.value)}
                                value={Lastname}/>
                         <input className="mt-5 p-2 font-mono w-56"
-                               type="number"
+                               type="text"
                                id="mobile"
                                placeholder="mobile"
                                onChange={(e) => setMobile(e.target.value)}

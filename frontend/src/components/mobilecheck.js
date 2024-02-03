@@ -1,7 +1,8 @@
 //Vaidation of a new mobile number
 const isValid = (newNumber) => {
     const MINLENGTH_OF_MOBILENUMBER = 11;
-    var number_completly = newNumber >= MINLENGTH_OF_MOBILENUMBER;
+    //TODO auf die Anzhal von newNumber zugreifen können
+    var number_completly = newNumber.toString().length >= MINLENGTH_OF_MOBILENUMBER;
     var firstNumbers = newNumber.toString().substring(0, 4);
     var validPattern = patternOfNumbersAreValid(firstNumbers);
     return number_completly && validPattern;

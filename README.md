@@ -1,8 +1,7 @@
 ## Contact-Management-System
 
-The app was developted as part of a private project.
-It manages contacts like database operations CRUD. On the left side the web applicaton contains a map, which
-lists all contacts. These are stored in a MongoDB. On the right side a form for adding new contact.
+The app was developed as part of a private project. It manages contacts like database operations (CRUD). The left side of the web application contains a list, which
+catalogues all contacts. These are stored in a MongoDB. On the right side there is a form for adding new contacts.
 
 ## Requirements
 * Node v20.10.0
@@ -18,8 +17,6 @@ cd Contact_Management_System
 ```bash
 npm install
 ```
-## Steps to start the server
-To connect to the MongoDB your machine needs the connecting to the internet and a collection called contact.
 
 ## To start the express server, run the following
 

@@ -88,7 +88,7 @@ export default function ContactForm(){
                     <div className="mt-10">
                         <label className="mt-7">Mobile:</label>
                         <input
-                            type="number"
+                            type="text"
                             id="mobile"
                             onChange={(e) => setMobile(e.target.value)}
                             value={Mobile}

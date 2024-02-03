@@ -12,7 +12,7 @@ const contactSchema = new Schema({
         required: true
     },
     Mobile:{
-        type: Number,
+        type: String,
         required: true
     }
 
