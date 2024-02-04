@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const contactSchema = new Schema({
+
     Firstname:{
         type: String,
         required: true
@@ -18,4 +19,5 @@ const contactSchema = new Schema({
 
 })
 
-module.exports = mongoose.model("phonebooks", contactSchema);
+const Contact = mongoose.model("phonebooks", contactSchema);
+module.exports = Contact;

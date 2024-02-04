@@ -1,5 +1,6 @@
 import {useState} from "react";
 import Mobilecheck from '../components/mobilecheck';
+import Namecheck from '../components/namecheck';
 
 export default function ContactForm(){
 
@@ -14,8 +15,10 @@ export default function ContactForm(){
 
         const contact = {Firstname, Lastname, Mobile}
 
-        if(!Mobilecheck.isValid(contact.Mobile)){
+        if(!Mobilecheck.isValid(contact.Mobile)) {
             alert("Deine Handynummer ist ungültig.");
+        }else if(!Namecheck(Firstname) || !Namecheck(Lastname) ){
+            alert("Der eingegebene Name ist ungültig.");
         }else if(scriptPattern(contact.Firstname, contact.Lastname)) {
             alert("Deine Eingabe ist ungültig.");
         }else{
