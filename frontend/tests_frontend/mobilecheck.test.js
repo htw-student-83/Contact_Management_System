@@ -61,4 +61,8 @@ describe('isValidName', () => {
         expect(isValidName("D2anie5l")).toBe(false);
     });
 
+    it('name has one specific symbol', () => {
+        expect(isValidName("#Meyer")).toBe(false);
+    });
+
 })
