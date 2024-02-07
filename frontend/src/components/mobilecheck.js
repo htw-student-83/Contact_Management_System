@@ -11,7 +11,8 @@ const isValid = (newNumber) => {
 
 //check the first 4 characters of a specific number
 const patternOfNumbersAreValid = (pattern) => {
-        const MOBILENETWORK = ["0152", "0162", "0172", "0173", "0174", "0175", "0153", "0179"];
+        const MOBILENETWORK = ["0151","0152", "0153", "0162", "0163", "0171", "0172",
+            "0173", "0174", "0175", "0176", "0178", "0179"];
         let patternIsValid = false;
         for(var i = 0; i < MOBILENETWORK.length; i++){
             if(pattern === MOBILENETWORK[i]){

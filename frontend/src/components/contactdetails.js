@@ -41,8 +41,8 @@ export default function Contactdetails({contact}) {
             console.log("Fields have content")
             changedContact.Firstname = document.getElementById("vorname").value;
             changedContact.Lastname = document.getElementById("nachname").value;
-            if(namecheck.contains_specific_symbols(changedContact.Firstname) ||
-                namecheck.contains_specific_symbols(changedContact.Lastname)){
+            if(!namecheck.containsLetters(Firstname) || !namecheck.containsLetters(Lastname) ||
+                namecheck.contains_specific_symbols(changedContact.Firstname) || namecheck.contains_specific_symbols(changedContact.Lastname)){
                 // &&
                 //namecheck.contains_specific_symbols(changedContact.Firstname) &&
                 //namecheck.contains_specific_symbols(changedContact.Lastname)){
