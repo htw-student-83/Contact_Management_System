@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-/Contact_Management_System/tests
+/Contact_Management_System/frontend/tests_frontend
 
 # production
 /build

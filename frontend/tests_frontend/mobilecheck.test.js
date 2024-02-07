@@ -1,6 +1,7 @@
 import { describe, test, it, expect } from "vitest";
 import { isValid } from "../src/components/mobilecheck";
 import namecheck from "../src/components/namecheck";
+import patterntest from '../src/components/patterncheck'
 
 describe('Validation of number', () =>{
 
@@ -24,7 +25,7 @@ describe('Validation of number', () =>{
         expect(isValid("016223334987")).toBe(true);
     });
 
-    it('mobile hat a letter', () => {
+    it('mobile has a letter', () => {
         expect(isValid("016223334987k")).toBe(false);
     });
 
@@ -141,6 +142,51 @@ describe('Validation of name', () => {
             expect(isValid("03044553399")).toBe(false);
         });
 
+        it('an invalid object to save', () => {
+            expect(namecheck.containsLetters("Sabrina")).toBe(true);
+            expect(namecheck.containsLetters("Guhl")).toBe(true);
+            expect(namecheck.contains_specific_symbols("Sabrina")).toBe(false);
+            expect(patterntest.scriptPattern("Sabrna", "Guhl","<script>"))
+                .toBe(true);
+        });
+
+        it('an invalid object to save', () => {
+            expect(namecheck.containsLetters("Sabrina")).toBe(true);
+            expect(namecheck.containsLetters("Guhl")).toBe(true);
+            expect(namecheck.contains_specific_symbols("Sabrina")).toBe(false);
+            expect(patterntest.scriptPattern("Sabrna", "Guhl","<?php"))
+                .toBe(true);
+        });
+
+        it('content of mobile field is invalid', () => {
+            expect(patterntest.scriptPattern("<script>", "Guhl","01405657897" ))
+                .toBe(true);
+        });
+
+        it('content of mobile field is invalid', () => {
+            expect(patterntest.scriptPattern("Sabrina", "<script>","01405657897" ))
+                .toBe(true);
+        });
+
+        it('content of mobile field is invalid', () => {
+            expect(patterntest.scriptPattern("Sabrina", "Guhl","<script>"))
+                .toBe(true);
+        });
+
+        it('content of mobile field is invalid', () => {
+            expect(patterntest.scriptPattern("<?php", "Guhl","01405657897" ))
+                .toBe(true);
+        });
+
+        it('content of mobile field is invalid', () => {
+            expect(patterntest.scriptPattern("Sabrina", "<?php","01405657897" ))
+                .toBe(true);
+        });
+
+        it('content of mobile field is invalid', () => {
+            expect(patterntest.scriptPattern("Sabrina", "Guhl","<?php"))
+                .toBe(true);
+        });
     });
 
 })

@@ -23,7 +23,6 @@ export default function Contactdetails({contact}) {
 
         if (!response.ok) {
             setError(json.error);
-            console.log(error);
         }
 
         if (response.ok) {
@@ -38,17 +37,12 @@ export default function Contactdetails({contact}) {
 
     const handleUpdateClose =  async () => {
         if(fieldsWithContent()){
-            console.log("Fields have content")
             changedContact.Firstname = document.getElementById("vorname").value;
             changedContact.Lastname = document.getElementById("nachname").value;
             if(!namecheck.containsLetters(Firstname) || !namecheck.containsLetters(Lastname) ||
                 namecheck.contains_specific_symbols(changedContact.Firstname) || namecheck.contains_specific_symbols(changedContact.Lastname)){
-                // &&
-                //namecheck.contains_specific_symbols(changedContact.Firstname) &&
-                //namecheck.contains_specific_symbols(changedContact.Lastname)){
                 alert("Eingegebene Name ist ungültig.")
             }else{
-                console.log("Not problems..")
                 changedContact.Mobile = document.getElementById("mobile").value;
                 if(Mobilecheck.isValid(changedContact.Mobile)){
                     const response = await fetch('/api/contact/' + contact._id, {

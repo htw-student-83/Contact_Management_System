@@ -1,6 +1,7 @@
 import {useState} from "react";
 import Mobilecheck from '../components/mobilecheck';
 import Namecheck from '../components/namecheck';
+import Patterneck from '../components/patterncheck'
 
 export default function ContactForm(){
 
@@ -20,7 +21,7 @@ export default function ContactForm(){
         }else if(!Namecheck.containsLetters(Firstname) || !Namecheck.containsLetters(Lastname) ||
                 Namecheck.contains_specific_symbols(Firstname) || Namecheck.contains_specific_symbols(Lastname)){
             alert("Der eingegebene Name ist ungültig.");
-        }else if(scriptPattern(contact.Firstname, contact.Lastname)) {
+        }else if(Patterneck.scriptPattern(contact.Firstname, contact.Lastname, contact.Mobile)) {
             alert("Deine Eingabe ist ungültig.");
         }else{
             const response = await fetch('/api/contact', {
@@ -48,19 +49,6 @@ export default function ContactForm(){
         }
     }
 
-
-
-    //check for the input for a hack action
-    function scriptPattern(patternForFirstname, patternForLastname){
-        var fisrtLettersOfFirstname = patternForFirstname.substring(0,8);
-        var fisrtLettersOfLastname = patternForLastname.substring(0,8);
-        let patternIsInValid = false;
-        const scriptPattern = "<script>";
-        if(fisrtLettersOfFirstname === scriptPattern || fisrtLettersOfLastname === scriptPattern){
-            patternIsInValid = true;
-        }
-        return patternIsInValid;
-    }
 
     return(
         <div className="mt-5 ml-72 mb-4 min-w-80 bg-green-100 h-4/5 p-10 rounded-2xl">
