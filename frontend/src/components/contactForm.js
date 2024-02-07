@@ -17,8 +17,6 @@ export default function ContactForm(){
 
         if(!Mobilecheck.isValid(contact.Mobile)) {
             alert("Deine Handynummer ist ungültig.");
-
-            //TODO to check the input contains numbers or specific symbols
         }else if(!Namecheck.containsLetters(Firstname) || !Namecheck.containsLetters(Lastname) ||
                 Namecheck.contains_specific_symbols(Firstname) || Namecheck.contains_specific_symbols(Lastname)){
             alert("Der eingegebene Name ist ungültig.");
