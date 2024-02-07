@@ -2,6 +2,7 @@ import {useState} from "react";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
 import Mobilecheck from '../components/mobilecheck';
+import namecheck from '../components/namecheck'
 
 export default function Contactdetails({contact}) {
 
@@ -27,7 +28,7 @@ export default function Contactdetails({contact}) {
 
         if (response.ok) {
             setError(null);
-            alert("Contact was deleted successfully.")
+            alert("Kontakt erfolgreich gelöscht.")
         }
     }
 
@@ -37,20 +38,30 @@ export default function Contactdetails({contact}) {
 
     const handleUpdateClose =  async () => {
         if(fieldsWithContent()){
+            console.log("Fields have content")
             changedContact.Firstname = document.getElementById("vorname").value;
             changedContact.Lastname = document.getElementById("nachname").value;
-            changedContact.Mobile = document.getElementById("mobile").value;
-            if(Mobilecheck.isValid(changedContact.Mobile)){
-                const response = await fetch('/api/contact/' + contact._id, {
-                    method: "PUT",
-                    body: JSON.stringify(changedContact),
-                    headers:{
-                        "Content-Type": "Application/json"
+            if(!namecheck.containsLetters(Firstname) || !namecheck.containsLetters(Lastname) ||
+                namecheck.contains_specific_symbols(changedContact.Firstname) || namecheck.contains_specific_symbols(changedContact.Lastname)){
+                // &&
+                //namecheck.contains_specific_symbols(changedContact.Firstname) &&
+                //namecheck.contains_specific_symbols(changedContact.Lastname)){
+                alert("Eingegebene Name ist ungültig.")
+            }else{
+                console.log("Not problems..")
+                changedContact.Mobile = document.getElementById("mobile").value;
+                if(Mobilecheck.isValid(changedContact.Mobile)){
+                    const response = await fetch('/api/contact/' + contact._id, {
+                        method: "PUT",
+                        body: JSON.stringify(changedContact),
+                        headers:{
+                            "Content-Type": "Application/json"
+                        }
+                    })
+                    const json = await response.json();
+                    if(response.ok){
+                        alert("Kontakt erfolgreich geändert.")
                     }
-                })
-                const json = await response.json();
-                if(response.ok){
-                    alert("Contact was changed successfully.")
                 }
             }
         }
@@ -93,7 +104,7 @@ export default function Contactdetails({contact}) {
                                onChange={(e) => setLastname(e.target.value)}
                                value={Lastname}/>
                         <input className="mt-5 p-2 font-mono w-56"
-                               type="number"
+                               type="text"
                                id="mobile"
                                placeholder="mobile"
                                onChange={(e) => setMobile(e.target.value)}

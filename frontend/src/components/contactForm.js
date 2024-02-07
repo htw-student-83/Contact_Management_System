@@ -1,5 +1,6 @@
 import {useState} from "react";
 import Mobilecheck from '../components/mobilecheck';
+import Namecheck from '../components/namecheck';
 
 export default function ContactForm(){
 
@@ -14,8 +15,11 @@ export default function ContactForm(){
 
         const contact = {Firstname, Lastname, Mobile}
 
-        if(!Mobilecheck.isValid(contact.Mobile)){
+        if(!Mobilecheck.isValid(contact.Mobile)) {
             alert("Deine Handynummer ist ungültig.");
+        }else if(!Namecheck.containsLetters(Firstname) || !Namecheck.containsLetters(Lastname) ||
+                Namecheck.contains_specific_symbols(Firstname) || Namecheck.contains_specific_symbols(Lastname)){
+            alert("Der eingegebene Name ist ungültig.");
         }else if(scriptPattern(contact.Firstname, contact.Lastname)) {
             alert("Deine Eingabe ist ungültig.");
         }else{
@@ -59,7 +63,7 @@ export default function ContactForm(){
     }
 
     return(
-        <div className="mt-5 ml-72 mb-40 min-w-80 bg-green-100 h-4/5 p-10 rounded-2xl">
+        <div className="mt-5 ml-72 mb-4 min-w-80 bg-green-100 h-4/5 p-10 rounded-2xl">
             <p className="font-bold text-2xl">Neuer Kontakt</p>
             <div className="">
                 <form onSubmit={handleSubmit} className="">
@@ -88,7 +92,7 @@ export default function ContactForm(){
                     <div className="mt-10">
                         <label className="mt-7">Mobile:</label>
                         <input
-                            type="number"
+                            type="text"
                             id="mobile"
                             onChange={(e) => setMobile(e.target.value)}
                             value={Mobile}

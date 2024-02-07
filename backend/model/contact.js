@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const contactSchema = new Schema({
+
     Firstname:{
         type: String,
         required: true
@@ -12,7 +13,7 @@ const contactSchema = new Schema({
         required: true
     },
     Mobile:{
-        type: Number,
+        type: String,
         required: true
     }
 
