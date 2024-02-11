@@ -10,7 +10,7 @@ const isValid = (newNumber) => {
 
 const patternOfNumbersAreValid = (pattern) => {
         const MOBILENETWORK = ["0151","0152", "0153", "0162", "0163", "0171", "0172",
-            "0173", "0174", "0175", "0176", "0178", "0179"];
+            "0173", "0174", "0175", "0176", "0177", "0178", "0179"];
         let patternIsValid = false;
         for(var i = 0; i < MOBILENETWORK.length; i++){
             if(pattern === MOBILENETWORK[i]){
