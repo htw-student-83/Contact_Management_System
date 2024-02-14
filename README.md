@@ -8,7 +8,8 @@ catalogues all contacts. These are stored in a MongoDB. On the right side there 
 * Git
 
 ## Common and Setup
-Clone the repo and install the dependencies.
+Clone the repo and install the dependencies. Furthermore, you should
+create an env file where the port and the url to the mongoDB is noticed.
 
 ```bash
 git clone https://github.com/htw-student-83/Contact_Management_System.git

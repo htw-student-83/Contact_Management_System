@@ -8,12 +8,18 @@ const containsLetters = (newName) => {
 
 //validation of specific symbols
 const contains_specific_symbols  = (newName) =>  {
-    var specificSymbols = /\W/;
+    var specificSymbols = /[(){}?§^.:,;_´`'*+~<|>€%&$#@!]/;
     return specificSymbols.test(newName);
+}
+
+//validation of specific symbols
+const nameBeginsWithCapitalLetter  = (newName) =>  {
+    return newName.charAt(0) === newName.charAt(0).toUpperCase();
 }
 
 module.exports = {
     containsLetters,
     contains_specific_symbols,
+    nameBeginsWithCapitalLetter,
 }
 
