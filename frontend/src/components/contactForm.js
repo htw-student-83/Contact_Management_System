@@ -15,11 +15,11 @@ export default function ContactForm(){
         e.preventDefault()
 
         const contact = {Firstname, Lastname, Mobile}
-
         if(!Mobilecheck.isValid(contact.Mobile)) {
             alert("Deine Handynummer ist ungültig.");
         }else if(!Namecheck.containsLetters(Firstname) || !Namecheck.containsLetters(Lastname) ||
-                Namecheck.contains_specific_symbols(Firstname) || Namecheck.contains_specific_symbols(Lastname)){
+                Namecheck.contains_specific_symbols(Firstname) || Namecheck.contains_specific_symbols(Lastname) ||
+                !Namecheck.nameBeginsWithCapitalLetter(contact.Firstname) || !Namecheck.nameBeginsWithCapitalLetter(contact.Lastname)){
             alert("Der eingegebene Name ist ungültig.");
         }else if(Patterneck.scriptPattern(contact.Firstname, contact.Lastname, contact.Mobile)) {
             alert("Deine Eingabe ist ungültig.");
